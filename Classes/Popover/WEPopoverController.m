@@ -23,6 +23,10 @@
 
 @end
 
+@interface WEPopoverController()
+@property (nonatomic, assign, getter=isPopoverVisible) BOOL popoverVisible;
+@end
+
 
 @implementation WEPopoverController
 
@@ -80,10 +84,13 @@
 	
 	if ([animationID isEqual:@"FadeIn"]) {
 		self.view.userInteractionEnabled = YES;
-		popoverVisible = YES;
+		self.popoverVisible = YES;
 		[contentViewController viewDidAppear:YES];
 	} else {
-		popoverVisible = NO;
+		self.popoverVisible = NO;
+        if ([delegate respondsToSelector:@selector(popoverDidDisappear:)]) {
+            [delegate popoverDidDisappear:self];
+        }
 		[contentViewController viewDidDisappear:YES];
 		[self.view removeFromSuperview];
 		self.view = nil;
@@ -179,7 +186,7 @@
 		
 		[UIView commitAnimations];
 	} else {
-		popoverVisible = YES;
+		self.popoverVisible = YES;
 		[contentViewController viewDidAppear:animated];
 	}	
 }
@@ -202,7 +209,7 @@
 #pragma mark WETouchableViewDelegate implementation
 
 - (void)viewWasTouched:(WETouchableView *)view {
-	if (popoverVisible) {
+	if (self.popoverVisible) {
 		if (!delegate || [delegate popoverControllerShouldDismissPopover:self]) {
 			[self dismissPopoverAnimated:YES userInitiated:YES];
 		}
@@ -238,7 +245,7 @@
 - (void)dismissPopoverAnimated:(BOOL)animated userInitiated:(BOOL)userInitiated {
 	if (self.view) {
 		[contentViewController viewWillDisappear:animated];
-		popoverVisible = NO;
+		self.popoverVisible = NO;
 		[self.view resignFirstResponder];
 		if (animated) {
 			

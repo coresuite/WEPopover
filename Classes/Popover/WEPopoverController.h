@@ -16,7 +16,8 @@
 
 - (void)popoverControllerDidDismissPopover:(WEPopoverController *)popoverController;
 - (BOOL)popoverControllerShouldDismissPopover:(WEPopoverController *)popoverController;
-
+@optional
+- (void) popoverDidDisappear:(WEPopoverController *) popoverController;
 @end
 
 /**
