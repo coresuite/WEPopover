@@ -98,7 +98,7 @@
 		[backgroundView release];
 		backgroundView = nil;
 		
-		BOOL userInitiatedDismissal = [(NSNumber *)theContext boolValue];
+		BOOL userInitiatedDismissal = [(__bridge NSNumber *)theContext boolValue];
 		
 		if (userInitiatedDismissal) {
 			//Only send message to delegate in case the user initiated this event, which is if he touched outside the view
