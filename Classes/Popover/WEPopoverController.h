@@ -30,7 +30,7 @@
 	
 	BOOL popoverVisible;
 	UIPopoverArrowDirection popoverArrowDirection;
-	id <WEPopoverControllerDelegate> __unsafe_unretained delegate;
+	id <WEPopoverControllerDelegate> __weak delegate;
 	CGSize popoverContentSize;
 	WEPopoverContainerViewProperties *containerViewProperties;
 	id <NSObject> context;
@@ -42,7 +42,7 @@
 @property (nonatomic, readonly) UIView *view;
 @property (nonatomic, readonly, getter=isPopoverVisible) BOOL popoverVisible;
 @property (nonatomic, readonly) UIPopoverArrowDirection popoverArrowDirection;
-@property (nonatomic, unsafe_unretained) id <WEPopoverControllerDelegate> delegate;
+@property (nonatomic, weak) id <WEPopoverControllerDelegate> delegate;
 @property (nonatomic, assign) CGSize popoverContentSize;
 @property (nonatomic) WEPopoverContainerViewProperties *containerViewProperties;
 @property (nonatomic) id <NSObject> context;
