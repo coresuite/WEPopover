@@ -64,5 +64,6 @@
 - (void)repositionPopoverFromRect:(CGRect)rect
 						   inView:(UIView *)view
 		 permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections;
+- (WEPopoverContainerViewProperties *)defaultContainerViewProperties;
 
 @end
