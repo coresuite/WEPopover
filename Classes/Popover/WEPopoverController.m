@@ -149,7 +149,7 @@
 	
 	[keyView addSubview:backgroundView];
 	
-	containerView.frame = [theView convertRect:containerView.frame toView:backgroundView];
+	containerView.frame = CGRectIntegral([theView convertRect:containerView.frame toView:backgroundView]);
 	
 	[backgroundView addSubview:containerView];
 	
